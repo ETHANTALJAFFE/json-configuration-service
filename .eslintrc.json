@@ -24,6 +24,7 @@
     ],
     "rules": {
         "indent": ["error", 4],
-        "comma-dangle": "off"
+        "comma-dangle": "off",
+        "max-len": ["error", {"ignoreComments":  true, "code":  120}]
     }
 }
