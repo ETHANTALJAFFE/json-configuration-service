@@ -1,17 +1,17 @@
 {
   "name": "json-configuration-service",
   "version": "0.1.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node -r esm index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:js": "eslint . --ext .js,.jsx",
     "lint:js:fix": "npm run lint:js -- --fix"
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [
-      "eslint . --fix", "git add"
+      "eslint . --fix",
+      "git add"
     ]
   },
   "husky": {
@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/ETHANTALJAFFE/json-configuration-service#readme",
   "dependencies": {
+    "esm": "^3.2.25",
     "express": "^4.17.1"
   },
   "devDependencies": {
@@ -41,5 +42,6 @@
     "eslint-plugin-react-hooks": "^2.5.1",
     "husky": "^4.2.3",
     "lint-staged": "^10.1.1"
-  }
+  },
+  "description": ""
 }

@@ -106,5 +106,5 @@ dist
 # Jetbrains
 .idea
 
-# Local Configurations
-configurations
+# Local projects
+test-projects-folder
