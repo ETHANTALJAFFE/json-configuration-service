@@ -1,8 +1,9 @@
 import createError from 'http-errors';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import jsonConfig from 'json-configurator-store';
+import { body, param } from 'express-validator';
 
-const projectsController = {
+const requests = {
     createProject: async (req, res, next) => {
         const { projectName } = req.body;
         try {
@@ -14,11 +15,6 @@ const projectsController = {
     },
     getProject: async (req, res, next) => {
         const { projectName } = req.params;
-
-        if (typeof projectName !== 'string') {
-            next(createError(400, 'Invalid query'));
-        }
-
         try {
             const configs = await jsonConfig.ProjectManagement.getProjectConfigurations(projectName);
             const configsWithoutFileExtension = configs.map((configName) => configName.replace(/\.[^/.]+$/, ''));
@@ -35,6 +31,14 @@ const projectsController = {
             next(err);
         }
     }
+};
+const validation = {
+    createProject: () => [body('projectName').exists()],
+    getProject: () => [param('projectName').exists().isString()]
+};
+const projectsController = {
+    requests,
+    validate: (actionName) => validation[actionName]()
 };
 
 export default projectsController;
