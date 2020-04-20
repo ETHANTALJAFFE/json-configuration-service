@@ -1,7 +1,7 @@
 import createError from 'http-errors';
+import { check } from 'express-validator';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import jsonConfig from 'json-configurator-store';
-import { body, param } from 'express-validator';
 
 const requests = {
     createProject: async (req, res, next) => {
@@ -32,13 +32,25 @@ const requests = {
         }
     }
 };
-const validation = {
-    createProject: () => [body('projectName').exists()],
-    getProject: () => [param('projectName').exists().isString()]
+
+const validate = {
+    createProject: [
+        check('projectName')
+            .exists()
+            .withMessage('Missing field')
+    ],
+    getProject: [
+        check('projectName')
+            .exists()
+            .withMessage('Missing field')
+            .isString()
+            .withMessage('Field must be of type String')
+    ]
 };
+
 const projectsController = {
     requests,
-    validate: (actionName) => validation[actionName]()
+    validate
 };
 
 export default projectsController;

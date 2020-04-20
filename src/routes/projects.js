@@ -9,13 +9,16 @@ const { handleRequestValidation } = utils;
 
 const projectsRouter = express.Router();
 
-projectsRouter.post('/', projectsController.validate('createProject'), handleRequestValidation,
-    projectsController.requests.createProject);
+const { getProject, createProject, getAllProjects } = projectsController.requests;
 
-projectsRouter.get('/', projectsController.requests.getAllProjects);
+const { createProject: validateCreatProject, getProject: validateGetProject } = projectsController.validate;
+projectsRouter.post('/', handleRequestValidation(validateCreatProject),
+    createProject);
 
-projectsRouter.get('/:projectName', projectsController.validate('getProject'), handleRequestValidation,
-    projectsController.requests.getProject);
+projectsRouter.get('/', getAllProjects);
+
+projectsRouter.get('/:projectName', handleRequestValidation(validateGetProject),
+    getProject);
 
 projectsRouter.use('/:projectName/configurations', configurationsRouter);
 

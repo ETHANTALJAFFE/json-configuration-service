@@ -6,13 +6,18 @@ const { handleRequestValidation } = utils;
 
 const configurationsRouter = express.Router({ mergeParams: true });
 
-const { validate } = configurationsController;
+const { createConfiguration, getConfiguration } = configurationsController.requests;
 
-configurationsRouter.post('/', handleRequestValidation([...validate.createConfiguration]),
-    configurationsController.requests.createConfiguration);
+const {
+    getConfiguration: validateGetConfiguration,
+    createConfiguration: validateCreateConfiguration
+} = configurationsController.validate;
 
-configurationsRouter.get('/:configName', handleRequestValidation([...validate.getConfiguration]),
-    configurationsController.requests.getConfiguration);
+configurationsRouter.post('/', handleRequestValidation(validateCreateConfiguration),
+    createConfiguration);
+
+configurationsRouter.get('/:configName', handleRequestValidation(validateGetConfiguration),
+    getConfiguration);
 
 
 export default configurationsRouter;
