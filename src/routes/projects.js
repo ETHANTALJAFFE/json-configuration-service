@@ -1,6 +1,6 @@
 import express from 'express';
 
-// import schemasRouter from './schemas';
+import schemasRouter from './schemas';
 import utils from '../utils';
 import configurationsRouter from './configurations';
 import projectsController from '../controllers/projects';
@@ -22,5 +22,6 @@ projectsRouter.get('/:projectName', handleRequestValidation(validateGetProject),
 
 projectsRouter.use('/:projectName/configurations', configurationsRouter);
 
-// projectsRouter.use('/:projectName/schemas', schemasRouter);
+projectsRouter.use('/:projectName/schemas', schemasRouter);
+
 export default projectsRouter;

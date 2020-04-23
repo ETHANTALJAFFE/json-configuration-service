@@ -1,0 +1,225 @@
+swagger: "2.0"
+info:
+  description: "JSON Configuration Service"
+  version: "1.0.0"
+  title: "JSON Configuration Service"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /projects:
+    post:
+      tags:
+        - "Projects"
+      summary: "Create a new project"
+      operationId: "createProject"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Pet object that needs to be added to the store"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateProjectRequest"
+      responses:
+        201:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        401:
+          description: "Bad Request"
+        500:
+          description: "Internal server error"
+    get:
+      tags:
+        - "Projects"
+      summary: "Gets all existing projects"
+      operationId: "getAllProjects"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        500:
+          description: "Internal server error"
+  /projects/{projectName}:
+    get:
+      tags:
+        - "Projects"
+      summary: "Get an existing project's list data (list of configurations)"
+      operationId: "getProject"
+      parameters:
+        - name: "projectName"
+          in: "path"
+          description: "name of request project"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        500:
+          description: "Internal server error"
+        404:
+          description: "Not found"
+  /projects/{projectName}/configurations/:
+    post:
+      tags:
+        - "Configurations"
+      summary: "Get an existing configuration from a project"
+      operationId: "createConfig"
+      parameters:
+        - name: "projectName"
+          in: "path"
+          description: "name of request project"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/CreateConfigRequest"
+      responses:
+        201:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        401:
+          description: "Bad Request"
+        500:
+          description: "Internal server error"
+  /projects/{projectName}/configurations/{configName}:
+    get:
+      tags:
+        - "Configurations"
+      summary: "Get an existing configuration from a project"
+      operationId: "getConfig"
+      parameters:
+        - name: "projectName"
+          in: "path"
+          description: "name of request project"
+          required: true
+          type: "string"
+        - name: "configName"
+          in: "path"
+          description: "name of requested config in project"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        500:
+          description: "Internal server error"
+        404:
+          description: "Not found"
+  /projects/{projectName}/schemas/:
+    post:
+      tags:
+        - "Schemas"
+      summary: "Get an existing configuration from a project"
+      operationId: "createSchema"
+      parameters:
+        - name: "projectName"
+          in: "path"
+          description: "name of request project"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/CreateSchemaRequest"
+      responses:
+        201:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        401:
+          description: "Bad Request"
+        500:
+          description: "Internal server error"
+  /projects/{projectName}/schemas/{schemaName}:
+    get:
+      tags:
+        - "Schemas"
+      summary: "Get an existing configuration from a project"
+      operationId: "getSchema"
+      parameters:
+        - name: "projectName"
+          in: "path"
+          description: "name of request project"
+          required: true
+          type: "string"
+        - name: "schemaName"
+          in: "path"
+          description: "name of requested schema in project"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        500:
+          description: "Internal server error"
+        404:
+          description: "Not found"
+definitions:
+  CreateProjectRequest:
+    type: "object"
+    required:
+      - "projectName"
+    properties:
+      projectName:
+        type: "string"
+        example: "MyProject"
+  CreateConfigRequest:
+    type: "object"
+    required:
+      - "configName"
+      - "configData"
+      - "suffix"
+    properties:
+      configName:
+        type: "string"
+        example: "MyProject"
+      configData:
+        type: "object"
+        example: {}
+      suffix:
+        type: "string"
+        example: ".json"
+  CreateSchemaRequest:
+    type: "object"
+    required:
+      - "schemaName"
+      - "schemaData"
+      - "suffix"
+    properties:
+      schemaName:
+        type: "string"
+        example: "MyProject"
+      schemaData:
+        type: "object"
+        example: {}
+      suffix:
+        type: "string"
+        example: ".json"
