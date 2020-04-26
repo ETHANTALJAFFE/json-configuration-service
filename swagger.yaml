@@ -72,7 +72,7 @@ paths:
     post:
       tags:
         - "Configurations"
-      summary: "Get an existing configuration from a project"
+      summary: "Create a new configuration inside of a project"
       operationId: "createConfig"
       parameters:
         - name: "projectName"
