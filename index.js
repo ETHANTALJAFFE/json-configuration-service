@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/projects', projectsRouter);
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((err, req, res, next) => {
     res.status(err.status).send(err);
