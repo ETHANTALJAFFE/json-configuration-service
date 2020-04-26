@@ -8,8 +8,9 @@ const utils = {
         const errors = validationResult(req);
         if (errors.isEmpty()) {
             next();
+        } else {
+            next(createError(400, errors.array()));
         }
-        next(createError(400, errors.array()));
     }
 };
 
