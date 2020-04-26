@@ -1,25 +1,25 @@
+import cors from 'cors';
+import YAML from 'yamljs';
 import express from 'express';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import jsonConfig from 'json-configurator-store';
+import swaggerUi from 'swagger-ui-express';
+import projectsRouter from './src/routes/projects';
+
+const swaggerDocument = YAML.load('./swagger.yaml');
 
 const port = 3000;
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post('/project/create', async (req, res) => {
-    const { projectName } = req.body;
-    await jsonConfig.createProject(projectName);
-    res.status(201).send(`Successfully created ${projectName}`);
-});
+app.use('/projects', projectsRouter);
 
-app.get('/project/:projectName', async (req, res) => {
-    const { projectName } = req.params;
-    const files = await jsonConfig.getProjectFiles(projectName);
-    res.status(200).json(files);
-});
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.use((err, req, res, next) => {
+    res.status(err.status).send(err);
+    next();
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

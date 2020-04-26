@@ -23,6 +23,8 @@
         "react"
     ],
     "rules": {
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "comma-dangle": "off",
+        "max-len": ["error", {"ignoreComments":  true, "code":  120}]
     }
 }
