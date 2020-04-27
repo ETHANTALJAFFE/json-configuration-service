@@ -1,20 +1,26 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Projects } from './components/Projects';
+import { AppBar, Paper, Toolbar, Typography } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import lightTheme from './themes/light.json';
+import darkTheme from './themes/dark.json';
+import { ThemedContainer, ThemedPageBackground } from './components/themed';
 
 function App() {
+    const theme = createMuiTheme(darkTheme);
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <ThemeProvider theme={theme}>
+            <ThemedPageBackground fixed elevation={0} square>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Typography variant="h6">JSON Configuration Service</Typography>
+                    </Toolbar>
+                </AppBar>
+                <Projects />
+            </ThemedPageBackground>
+        </ThemeProvider>
     );
 }
 

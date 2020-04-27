@@ -13,11 +13,10 @@ const {
     createConfiguration: validateCreateConfiguration
 } = configurationsController.validate;
 
-configurationsRouter.post('/', handleRequestValidation(validateCreateConfiguration),
-    createConfiguration);
+configurationsRouter.post('/', handleRequestValidation(validateCreateConfiguration), createConfiguration);
 
-configurationsRouter.get('/:configName', handleRequestValidation(validateGetConfiguration),
-    getConfiguration);
+configurationsRouter.get('/:configName', handleRequestValidation(validateGetConfiguration), getConfiguration);
 
+module.exports = { requests: configurationsController.requests };
 
 export default configurationsRouter;
