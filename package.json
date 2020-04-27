@@ -1,9 +1,9 @@
 {
   "name": "json-configuration-service",
   "version": "0.1.0",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
-    "start": "node -r esm index.js",
+    "start": "node -r esm server/index.js && npm run --prefix editor start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:js": "eslint . --ext .js,.jsx",
     "lint:js:fix": "npm run lint:js -- --fix"

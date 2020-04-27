@@ -6,7 +6,7 @@ import projectsRouter from './src/routes/projects';
 
 const swaggerDocument = YAML.load('./swagger.yaml');
 
-const port = 3000;
+const port = 8080;
 const app = express();
 
 app.use(cors());
