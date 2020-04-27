@@ -8,6 +8,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import lightTheme from './themes/light.json';
 import darkTheme from './themes/dark.json';
 import { ThemedContainer, ThemedPageBackground } from './components/themed';
+import ConfigEditor from './components/config-editor';
 
 function App() {
     const [shouldUseDarkTheme, setShouldUseDarkTheme] = useState(false);
@@ -31,7 +32,7 @@ function App() {
                         </div>
                     </Toolbar>
                 </AppBar>
-                <Projects />
+                <ConfigEditor />
             </ThemedPageBackground>
         </ThemeProvider>
     );
