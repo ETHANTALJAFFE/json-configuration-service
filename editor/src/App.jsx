@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+import Logo from './res/img/configurinator-logo.png';
 import './App.css';
 import { Projects } from './components/Projects';
-import { Brightness7Sharp, Brightness4Sharp } from '@material-ui/icons';
+import { Brightness7Sharp, Brightness4Sharp, Code as CodeIcon } from '@material-ui/icons';
 import { AppBar, Paper, Toolbar, Typography, Switch, IconButton, Tooltip } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import lightTheme from './themes/light.json';
@@ -21,7 +21,7 @@ function App() {
             <ThemedPageBackground fixed elevation={0} square>
                 <AppBar position="static">
                     <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <Typography variant="h6">JSON Configuration Service</Typography>
+                        <img src={Logo} height={100} />
                         <div>
                             <Tooltip title={themeToggleText}>
                                 <IconButton onClick={toggleTheme} color={'inherit'}>

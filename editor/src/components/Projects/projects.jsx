@@ -25,17 +25,33 @@ const Projects = props => {
                 <Typography variant="overline" component={'div'}>
                     Projects
                 </Typography>
-                <Button style={{ margin: '0 4px' }} variant={'contained'} color={'secondary'} size={'small'} disableElevation>
+                <Button
+                    style={{ margin: '0 4px' }}
+                    variant={'contained'}
+                    color={'secondary'}
+                    size={'small'}
+                    disableElevation
+                >
                     <Add />
                 </Button>
             </div>
             <Divider style={{ margin: '8px 0 24px 0' }} />
-            <Grid spacing={4} container direction="row" justify="flex-start" alignItems="center" xs={10}>
+            <Grid spacing={3} container direction="row" justify="flex-start" alignItems="flex-start" wrap={'wrap'}>
                 {projects.map(projectName => (
-                    <Grid item md>
+                    <Grid item xs={4}>
                         <Card component={'div'} variant={'outlined'} elevation={2} square={false}>
-                            <CardActionArea style={{ textAlign: 'center' }}>
-                                <div style={{ padding: '5vh 5vw' }}>{projectName}</div>
+                            <CardActionArea style={{ display: 'flex', justifyContent: 'center', textAlign: 'center' }}>
+                                <div
+                                    style={{
+                                        width: '5vw',
+                                        height: '10vh',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center'
+                                    }}
+                                >
+                                    <span>{projectName}</span>
+                                </div>
                             </CardActionArea>
                         </Card>
                     </Grid>
