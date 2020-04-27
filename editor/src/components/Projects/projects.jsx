@@ -1,8 +1,9 @@
 import config from '../../config/default';
 import React, { useEffect, useState } from 'react';
-import { Grid, Paper, Container, Card, CardActionArea, AppBar, Toolbar, Typography } from '@material-ui/core';
+import { Grid, Button, Card, CardActionArea, Typography, Divider } from '@material-ui/core';
+import { Add } from '@material-ui/icons';
 import { makeStyles, styled } from '@material-ui/core/styles';
-import { ThemedCard, ThemedContainer } from '../themed';
+import { ThemedButton, ThemedCard, ThemedContainer } from '../themed';
 
 const Projects = props => {
     const [projects, setProjects] = useState([]);
@@ -20,9 +21,15 @@ const Projects = props => {
 
     return (
         <ThemedContainer elevation={0} square maxWidth={'md'} style={{ padding: '40px' }}>
-            <Typography variant="overline" component={'div'}>
-                Projects
-            </Typography>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Typography variant="overline" component={'div'}>
+                    Projects
+                </Typography>
+                <Button style={{ margin: '0 4px' }} variant={'contained'} color={'secondary'} size={'small'} disableElevation>
+                    <Add />
+                </Button>
+            </div>
+            <Divider style={{ margin: '8px 0 24px 0' }} />
             <Grid spacing={4} container direction="row" justify="flex-start" alignItems="center" xs={10}>
                 {projects.map(projectName => (
                     <Grid item md>
