@@ -5,8 +5,7 @@
         "node": true
     },
     "extends": [
-        "plugin:react/recommended",
-        "airbnb"
+        "plugin:prettier/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -20,11 +19,9 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "prettier"
     ],
     "rules": {
-        "indent": ["error", 4],
-        "comma-dangle": "off",
-        "max-len": ["error", {"ignoreComments":  true, "code":  120}]
+        "prettier/prettier": "error"
     }
 }
